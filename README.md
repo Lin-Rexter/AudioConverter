@@ -3,7 +3,7 @@
 2. 打包工具為:[pyinstaller](https://github.com/pyinstaller/pyinstaller)<br>
 3. 支援的音頻轉換: mp3, flac, wav, aac, m4a, wma<br>
 
-語言版本目前只有中文<br>
+Language version: Chinese<br>
 下載位置:https://github.com/Lin-Rexter/Audio_Converter/tree/main/dist
 
 # Documentation
