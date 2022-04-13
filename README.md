@@ -5,7 +5,7 @@
 
 **Language version: Chinese**<br>
 
-Download location: https://github.com/Lin-Rexter/Audio_Converter/tree/main/dist
+**Download location: https://github.com/Lin-Rexter/Audio_Converter/tree/main/dist**
 __________________________________________________________________________________________________________________________________________________________________
 
 # Documentation
