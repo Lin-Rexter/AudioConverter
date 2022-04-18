@@ -45,7 +45,7 @@ def ShowList():
             )
         print("\n總共數量:{}個".format(Music_number))
     except:
-        print("\n目前目錄下沒有音源檔案!")
+        print("\n當前目錄下沒有音源檔案!\n")
     Choice()
 
 
@@ -59,18 +59,16 @@ def Choice():
             Music_name = os.path.basename(Music_path)
             Music_names = Music_name.split(".")[0]
         else:
-            os.system("cls" if os.name in ("nt", "dos") else "clear")
-            print("請輸入正確的MP3檔名或路徑！ \n")
-            Choice()
+            ShowList()
+            print("請輸入正確的檔名或路徑！ \n")
     except:
         ShowList()
-        print("請輸入正確的MP3檔名或路徑！ \n")
-        Choice()
-    print("\n要轉換的音檔名稱為:{}".format(Music_name))
-    audio_Convert()
+        print("例外錯誤！ \n")
+    print("\n要轉換的音檔名稱為:{}\n".format(Music_name))
+    Choice_Audio()
 
 
-def audio_Convert():
+def Choice_Audio():
     print("{:-^70}".format(""))  # 分隔線
     questions = [
         {
@@ -86,7 +84,7 @@ def audio_Convert():
     Target_file = os.path.join(
         os.path.dirname(Music_names), Music_names + "." + Music_audio["轉換後的音訊壓縮格式"]
     )
-    print("\n轉換後的音訊檔名為:{}".format(Target_file))
+    print("\n轉換後的音訊檔名為:{}\n".format(Target_file))
     print("{:-^70}".format(""))  # 分隔線
     print("您選擇的是將{}轉換成{}\n".format(Music_name, Target_file))
     Ask = input("是否要開始轉換?(Y/N)")
@@ -94,31 +92,38 @@ def audio_Convert():
         Audio_Convert()
     else:
         print("\n已取消轉換 請稍等...")
-        time.sleep(2)
         ShowList()
 
 
 def Audio_Convert():
-    print("\n正在轉換中...")
+    print("\n正在轉換中...\n")
     print("{:-^70}".format(""))  # 分隔線
-    start = time.perf_counter()
-    ffmpeg()
-    end = time.perf_counter()
-    Times = Decimal((end - start)).quantize(Decimal("0.00"), rounding=ROUND_HALF_UP)
+    if Music_audio["轉換後的音訊壓縮格式"] == Music_name.split(".")[1]:
+        print("\n轉換後的音訊格式與原檔案相同，請重新選擇轉換後的音訊格式!\n")
+        Ask_End()
+    else:
+        start = time.perf_counter()
+        ffmpeg()
+        end = time.perf_counter()
+        Times = Decimal((end - start)).quantize(Decimal("0.00"), rounding=ROUND_HALF_UP)
+    print("\n{:-^70}".format(""))  # 分隔線
+    print("\n轉換完成! 處理時間為: ", Times, "秒\n", flush=True, file=sys.stderr)
+    Ask_End()
+
+
+def Ask_End():
     print("{:-^70}".format(""))  # 分隔線
-    print("\n轉換完成! 處理時間為: ", Times, "秒", flush=True, file=sys.stderr)
     Ask2 = input("是否要繼續轉換?(Y/N):")
     if Ask2.lower() == "y":
         ShowList()
     else:
-        print("\n結束轉換程序!")
-        os.system("pause")
+        print("\n請按任意鍵結束程序!", end=" ")
+        os.system("pause >nul 2>nul")
+        sys.exit()
 
 
 def ffmpeg():
-    if Music_audio["轉換後的音訊壓縮格式"] == Music_name.split(".")[1]:
-        print("\n轉換後的音訊格式與原檔案相同，請重新選擇轉換後的音訊格式!")
-    elif Music_audio["轉換後的音訊壓縮格式"] == "mp3":
+    if Music_audio["轉換後的音訊壓縮格式"] == "mp3":
         os.system(
             'ffmpeg -i "{}" -q:a 0 -map_metadata 0 -id3v2_version 3 "{}"'.format(
                 Music_path, Target_file
@@ -151,7 +156,7 @@ def ffmpeg():
     elif Music_audio["轉換後的音訊壓縮格式"] == "wma":
         os.system('ffmpeg -i "{}" -c:a wmav2 "{}"'.format(Music_path, Target_file))
     else:
-        os.system("ffmpeg -i {} {}".format(Music_path, Target_file))
+        print("轉換失敗!\n")
 
 
 if __name__ == "__main__":
