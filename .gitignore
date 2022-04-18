@@ -1,0 +1,21 @@
+Audio_Converter.spec
+icon.ico
+python 格式化.bat
+.vscode/launch.json
+__pycache__/Audio_Converter.cpython-38.pyc
+build/Audio_Converter/Analysis-00.toc
+build/Audio_Converter/Audio_Converter.exe.manifest
+build/Audio_Converter/Audio_Converter.pkg
+build/Audio_Converter/base_library.zip
+build/Audio_Converter/EXE-00.toc
+build/Audio_Converter/PKG-00.toc
+build/Audio_Converter/PYZ-00.pyz
+build/Audio_Converter/PYZ-00.toc
+build/Audio_Converter/Tree-00.toc
+build/Audio_Converter/Tree-01.toc
+build/Audio_Converter/Tree-02.toc
+build/Audio_Converter/warn-Audio_Converter.txt
+build/Audio_Converter/xref-Audio_Converter.html
+build
+__pycache__
+.vscode
