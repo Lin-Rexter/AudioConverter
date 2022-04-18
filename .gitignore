@@ -1,6 +1,6 @@
 Audio_Converter.spec
 icon.ico
-python 格式化.bat
+python 格式化及打包.bat
 .vscode/launch.json
 __pycache__/Audio_Converter.cpython-38.pyc
 build/Audio_Converter/Analysis-00.toc
