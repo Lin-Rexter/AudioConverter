@@ -1,6 +1,6 @@
 # AudioConverter
 
-**Introduction:** A simple audio converter cli using [FFmpeg](https://github.com/FFmpeg/FFmpeg) with python.
+**Introduction:** A simple audio converter of python using [FFmpeg](https://github.com/FFmpeg/FFmpeg).
 
 1. Use [FFmpeg](https://github.com/FFmpeg/FFmpeg)<br>
 2. Use [PyInquirer](https://github.com/CITGuru/PyInquirer) and [Rich](https://github.com/Textualize/rich)<br>
@@ -9,7 +9,7 @@
 
 **Language version: Chinese and English**<br>
 
-**[Download link](https://github.com/Lin-Rexter/AudioConverter/blob/main/dist/Audio_Converter.exe?raw=true)**
+### **[Download link](https://github.com/Lin-Rexter/AudioConverter/blob/main/dist/Audio_Converter.exe?raw=true)**
 
 ### WARNING! If displays a security warning for file after run the file,you can continue running the file.
 ________________________________________________________________________________________________________________________________________________
