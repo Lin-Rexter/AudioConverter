@@ -2,10 +2,10 @@
 
 **Introduction:** A simple audio converter of python using [FFmpeg](https://github.com/FFmpeg/FFmpeg).
 
-1. Use [FFmpeg](https://github.com/FFmpeg/FFmpeg)<br>
-2. Use [PyInquirer](https://github.com/CITGuru/PyInquirer) and [Rich](https://github.com/Textualize/rich)<br>
-3. Use [pyinstaller](https://github.com/pyinstaller/pyinstaller)<br>
-4. Supported audio: mp3, flac, wav, aac, m4a, wma, ogg<br>
+**1.** Use [FFmpeg](https://github.com/FFmpeg/FFmpeg)<br>
+**2.** Use [PyInquirer](https://github.com/CITGuru/PyInquirer) and [Rich](https://github.com/Textualize/rich)<br>
+**3.** Use [pyinstaller](https://github.com/pyinstaller/pyinstaller)<br>
+**4.** Supported audio: mp3, flac, wav, aac, m4a, wma, ogg<br>
 
 **Language version: Chinese and English**<br>
 
