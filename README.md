@@ -6,7 +6,9 @@
 
 **Language version: Chinese and English**<br>
 
-**Download location: https://github.com/Lin-Rexter/Audio_Converter/tree/main/dist**
+**[Download link](https://github.com/Lin-Rexter/AudioConverter/blob/main/dist/Audio_Converter.exe?raw=true)**
+
+## WARNING!! If run the file displays a warning,you can continue running.
 ________________________________________________________________________________________________________________________________________________
 
 # Documentation
