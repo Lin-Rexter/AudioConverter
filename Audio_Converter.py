@@ -304,46 +304,17 @@ def Chinese():
 
     # 轉換處理主程序
     def ffmpeg():
-        if Target_audio == "mp3":
-            os.system(
-                'ffmpeg -i "{}" -q:a 0 -map_metadata 0 -id3v2_version 3 "{}"'.format(
-                    Music_path, Target_file_path
-                )
-            )
-        elif Target_audio == "wav":
-            os.system(
-                'ffmpeg -i "{}" -c:a pcm_s16le -f wav "{}"'.format(
-                    Music_path, Target_file_path
-                )
-            )
-        elif Target_audio == "aac":
-            os.system(
-                'ffmpeg -i "{}" -c:a aac -strict experimental "{}"'.format(
-                    Music_path, Target_file_path
-                )
-            )
-        elif Target_audio == "flac":
-            os.system(
-                'ffmpeg -i "{}" -c:a flac -compression_level 12 "{}"'.format(
-                    Music_path, Target_file_path
-                )
-            )
-        elif Target_audio == "m4a":
-            os.system(
-                'ffmpeg -i "{}" -c:a aac -strict experimental "{}"'.format(
-                    Music_path, Target_file_path
-                )
-            )
-        elif Target_audio == "ogg":
-            os.system(
-                'ffmpeg -i "{}" -c:a libvorbis "{}"'.format(
-                    Music_path, Target_file_path
-                )
-            )
-        elif Target_audio == "wma":
-            os.system(
-                'ffmpeg -i "{}" -c:a wmav2 "{}"'.format(Music_path, Target_file_path)
-            )
+        Audio_format = {"mp3":  '{} "{}" -q:a 0 -map_metadata 0 -id3v2_version 3 "{}"',
+                        "wav":  '{} "{}" -c:a pcm_s16le -f wav "{}"',
+                        "aac":  '{} "{}" -c:a aac -strict experimental "{}"',
+                        "flac": '{} "{}" -c:a flac -compression_level 12 "{}"',
+                        "m4a":  '{} "{}" -c:a aac -strict experimental "{}"',
+                        "ogg":  '{} "{}" -c:a libvorbis "{}"',
+                        "wma":  '{} "{}" -c:a wmav2 "{}"'
+                        }
+        if Target_audio in Audio_format:
+            os.system( Audio_format[Target_audio].format('ffmpeg -i', Music_path, Target_file_path) )
+
 
     # 轉換完成後的詢問
     def Ask_End():
@@ -474,44 +445,16 @@ def English():
 
     # Conversion processing main program
     def ffmpeg():
-        if Music_audio["Choice_Audio"] == "wav":
-            os.system(
-                'ffmpeg -i "{}" -q:a 0 -map_metadata 0 -id3v2_version 3 "{}"'.format(
-                    Music_path, Target_file
-                )
-            )
-        elif Music_audio["Choice_Audio"] == "wav":
-            os.system(
-                'ffmpeg -i "{}" -c:a pcm_s16le -f wav "{}"'.format(
-                    Music_path, Target_file
-                )
-            )
-        elif Music_audio["Choice_Audio"] == "aac":
-            os.system(
-                'ffmpeg -i "{}" -c:a aac -strict experimental "{}"'.format(
-                    Music_path, Target_file
-                )
-            )
-        elif Music_audio["Choice_Audio"] == "flac":
-            os.system(
-                'ffmpeg -i "{}" -c:a flac -compression_level 12 "{}"'.format(
-                    Music_path, Target_file
-                )
-            )
-        elif Music_audio["Choice_Audio"] == "m4a":
-            os.system(
-                'ffmpeg -i "{}" -c:a aac -strict experimental "{}"'.format(
-                    Music_path, Target_file
-                )
-            )
-        elif Music_audio["Choice_Audio"] == "ogg":
-            os.system(
-                'ffmpeg -i "{}" -c:a libvorbis "{}"'.format(Music_path, Target_file)
-            )
-        elif Music_audio["Choice_Audio"] == "wma":
-            os.system('ffmpeg -i "{}" -c:a wmav2 "{}"'.format(Music_path, Target_file))
-        else:
-            console.print("\n[bold red]Conversion failed![/]\n")
+        Audio_format = {"mp3":  '{} "{}" -q:a 0 -map_metadata 0 -id3v2_version 3 "{}"',
+                        "wav":  '{} "{}" -c:a pcm_s16le -f wav "{}"',
+                        "aac":  '{} "{}" -c:a aac -strict experimental "{}"',
+                        "flac": '{} "{}" -c:a flac -compression_level 12 "{}"',
+                        "m4a":  '{} "{}" -c:a aac -strict experimental "{}"',
+                        "ogg":  '{} "{}" -c:a libvorbis "{}"',
+                        "wma":  '{} "{}" -c:a wmav2 "{}"'
+                        }
+        if Target_audio in Audio_format:
+            os.system( Audio_format[Target_audio].format('ffmpeg -i', Music_path, Target_file) )
 
     # Ask whether to continue to convert
     def Ask_End():
