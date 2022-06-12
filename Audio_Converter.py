@@ -15,7 +15,7 @@ from rich.table import Table
 # 時間運算
 from decimal import *
 
-# 自訂模組
+# Custom module
 from ALL_Module.OS import *
 from ALL_Module.Convert_size import *
 from ALL_Module.ANSI_Escape_Code import *
@@ -47,11 +47,11 @@ class Input_ask:
             if self.Message_type == "Check_Ask":
                 self.Err_message = "請輸入Y或N"  # 錯誤訊息
 
-                valid = {"yes": True, "y": True, "ye": True, "no": False, "n": False}
+                Valid = {"yes": True, "y": True, "ye": True, "no": False, "n": False}
                 self.Reply = self.Reply.lower()
 
-                if self.Reply in valid:
-                    self.Reply = valid[self.Reply]
+                if self.Reply in Valid:
+                    self.Reply = Valid[self.Reply]
                     self.Back_A()
                 else:
                     self.ShowError()
@@ -59,9 +59,9 @@ class Input_ask:
             # 判斷輸入是否為正確檔名或路徑
             elif self.Message_type == "Check_File-Name":
                 self.Err_message = "請輸入正確的檔名或路徑或音檔代號!"
-                if os.path.exists(self.Reply) or 0 < int(self.Reply) <= (
+                if Music_list != [] and (os.path.exists(self.Reply) or 0 < int(self.Reply) <= (
                     int(Music_number)
-                ):
+                )):
                     self.Back_B()
                 else:
                     self.ShowError()
@@ -149,7 +149,7 @@ def Chinese():
 
             Music_list = subprocess.getoutput(
                 "dir /B /O:S /A-d *.mp3 *.flac *.wav *.aac *.m4a *.wma *.ogg 2> nul"
-            ).split("\n")
+            ).split()
 
             # 顯示當前音檔清單
             table = Table(show_header=True, header_style="bold green", box=box.ROUNDED)
@@ -158,7 +158,6 @@ def Chinese():
             table.add_column("檔案大小", style="cyan", justify="center")
             for i in range(len(Music_list)):
                 Music_number += 1
-                Music_number = Music_number - 1
                 table.add_row(
                     "(" + str(i + 1) + ")",
                     Music_list[i],
@@ -186,7 +185,7 @@ def Chinese():
             True,
         ).Reply
 
-        # 判斷輸入的數值是否為號碼，進行數值變換
+        # 判斷輸入的數值是否為代號，將數值變換為音檔名稱
         try:
             Music_name = Music_list[int(Music_path) - 1]  # 列表從0開始所以減1
             Music_path = Music_name
@@ -281,6 +280,7 @@ def Chinese():
                 "[bold #ebcc36]\n轉換後的音訊格式與原檔案相同，是否繼續轉換? [Y/N] [/]", "Check_Ask", True
             ).Reply
             if Ask2 == True:
+                print("\n")
                 pass
             elif Ask2 == False:
                 Ask_End()
@@ -336,7 +336,7 @@ def Chinese():
         ShowList()
 
 
-# 語言版本-English
+# 語言版本-English(尚未更新!!)
 def English():
     Clear()
     # Show list of music file in the current directory
@@ -518,5 +518,5 @@ if __name__ == "__main__":
     try:
         Ask_language()
     except Exception:
-        console.print("\n[bold red]已中斷程序! Operation cancelled![/]\n")
+        console.print("\n\n[bold red]已中斷程序! Operation cancelled![/]\n")
         sys.exit()
