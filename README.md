@@ -1,6 +1,7 @@
-# AudioConverter
+## AudioConverter
+A simple audio converter of python using [FFmpeg](https://github.com/FFmpeg/FFmpeg).
 
-**Introduction:** A simple audio converter of python using [FFmpeg](https://github.com/FFmpeg/FFmpeg).
+### **Introduction:**
 
 **1.** Use [FFmpeg](https://github.com/FFmpeg/FFmpeg) convert audio format.<br>
 **2.** Use [PyInquirer](https://github.com/CITGuru/PyInquirer) and [Rich](https://github.com/Textualize/rich) to build beautiful interfaces.<br>
@@ -15,7 +16,7 @@
 ### WARNING! If a security warning appears after running the file,you can continue to run it.
 ________________________________________________________________________________________________________________________________________________
 
-## Use
+## Usage
 
 ### English
 ```
