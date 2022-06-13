@@ -37,24 +37,13 @@ class ANSI_EC:
 
     def Err_Red(self):
         console.print("\n" + self.x, style="bold red")
-        sys.stdout.write("\x1B[{}A".format(1))
+        sys.stdout.write("\x1B[{}A".format(2))
 
 
 # 自定義功能(組合功能)
 class Custom:
     def Show_Err(x):
         ANSI_EC(x).Err_Red()
-
-    def Re_Err_A():
-        ANSI_EC(1).Move_Down()
-        ANSI_EC(0).Clear_A()
-        ANSI_EC(1).Move_Top()
-
-    def Re_Err_B():
-        ANSI_EC(1).Move_Down()
-        ANSI_EC(0).Clear_B()
-        ANSI_EC.Err_Flush()
-        ANSI_EC(1).Move_Top()
 
     def Re_Cursor_A():
         ANSI_EC(3).Move_Top()
@@ -63,3 +52,14 @@ class Custom:
     def Re_Cursor_B():
         ANSI_EC(2).Move_Top()
         ANSI_EC(0).Clear_A()
+    
+    def Re_Err_A():
+        ANSI_EC(2).Move_Down()
+        ANSI_EC(0).Clear_A()
+        ANSI_EC(2).Move_Top()
+
+    def Re_Err_B():
+        ANSI_EC(2).Move_Down()
+        ANSI_EC(0).Clear_B()
+        ANSI_EC.Err_Flush()
+        ANSI_EC(2).Move_Top()
