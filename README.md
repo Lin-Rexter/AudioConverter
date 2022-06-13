@@ -16,8 +16,7 @@ A simple audio converter of python using [FFmpeg](https://github.com/FFmpeg/FFmp
 ## Installation
 ### [Download Zip](https://github.com/Lin-Rexter/AudioConverter/archive/refs/heads/main.zip)
 
-## Notice
-**If a security warning appears after running the file,you can continue to run it.**
+> **Notice: If a security warning appears after running the file,you can continue to run it.**
 
 ## Usage
 
