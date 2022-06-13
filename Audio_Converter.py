@@ -18,6 +18,7 @@ from decimal import *
 # Custom module
 from ALL_Module.OS import *
 from ALL_Module.Convert_size import *
+from ALL_Module.Separation_Line import *
 from ALL_Module.ANSI_Escape_Code import *
 
 # import curses
@@ -25,7 +26,6 @@ from ALL_Module.ANSI_Escape_Code import *
 # rich module
 pretty.install()
 console = Console()
-
 
 # Custom Input Validation
 class Input_ask:
@@ -52,7 +52,7 @@ class Input_ask:
 
                 if self.Reply in Valid:
                     self.Reply = Valid[self.Reply]
-                    self.Back_A()
+                    self.Back_B()
                 else:
                     self.ShowError()
 
@@ -142,7 +142,7 @@ def Chinese():
     Clear()
     # 顯示目錄下音源檔案
     def ShowList():
-        console.print("{:-^74}".format("[bold cyan]當前目錄下的音樂檔案[/]"))
+        Lines("[bold cyan]當前目錄下的音樂檔案[/]","-",74)
         try:
             global Music_list, Music_number
             Music_number = 0
@@ -153,7 +153,7 @@ def Chinese():
 
             # 顯示當前音檔清單
             table = Table(show_header=True, header_style="bold green", box=box.ROUNDED)
-            table.add_column("數量", style="cyan", justify="center")
+            table.add_column("號碼", style="cyan", justify="center")
             table.add_column("檔案名稱", style="cyan", justify="center")
             table.add_column("檔案大小", style="cyan", justify="center")
             for i in range(len(Music_list)):
@@ -172,8 +172,8 @@ def Chinese():
 
     # 輸入要轉換的檔案名稱或路徑
     def Choice():
-        # 分隔線
-        console.print("{:-^70}".format(""))
+        Lines("","-",70) # 分隔線
+
         # Music_path = 輸入的檔案路徑或是檔案名稱
         # Music_name = 去掉路徑後的檔案名稱
         # Music_extension = 檔案的副檔名
@@ -188,7 +188,7 @@ def Chinese():
         # 判斷輸入的數值是否為代號，將數值變換為音檔名稱
         try:
             Music_name = Music_list[int(Music_path) - 1]  # 列表從0開始所以減1
-            Music_path = Music_name
+            Music_path = os.path.abspath(Music_name)
         except:
             Music_name = os.path.basename(Music_path)
         Music_extension = Music_name.split(".")[1]
@@ -198,7 +198,7 @@ def Chinese():
 
     # 輸入轉換後的檔案名稱
     def Ask_Name():
-        console.print("{:-^70}".format(""))  # 分隔線
+        Lines("","-",70)  # 分隔線
         global Ask_name
 
         Ask_name = Input_ask(
@@ -213,7 +213,7 @@ def Chinese():
 
     # 選擇要轉換的音源格式
     def Choice_Audio():
-        console.print("{:-^70}\n".format(""))  # 分隔線
+        Lines("","-",70)  # 分隔線
         # Target_audio = 選擇的音源格式
         # Target_file_name = 轉換後的檔案完整名稱
         global Target_audio, Target_file_name
@@ -238,7 +238,7 @@ def Chinese():
 
     # 輸入轉換後的檔案路徑
     def Ask_Path():
-        console.print("{:-^70}".format(""))  # 分隔線
+        Lines("","-",70)  # 分隔線
         # Ask_path = 設置轉換後的檔案放置位置
         # Target_file_path = 轉換後的檔案完整路徑
         global Ask_path, Target_file_path
@@ -256,14 +256,18 @@ def Chinese():
 
     # 詢問是否開始轉換
     def Ask_Convert():
-        console.print("{:-^70}".format(""))  # 分隔線
-        console.print(
-            "\n轉換流程: [bold deep_sky_blue3]{}[/] [bold red]=>[/] [bold deep_sky_blue3]{}[/] \n".format(
-                Music_path, Target_file_path
-            )
-        )
+        Lines("[bold cyan]轉換流程[/]","-",80)  # 分隔線
 
-        Ask = Input_ask("[bold #ebcc36]是否要開始轉換? [Y/N] [/]", "Check_Ask", True).Reply
+        console.print("\n選擇的檔案路徑:\n[bold deep_sky_blue3]{}[/]\n".format(os.path.dirname(Music_path)))
+        console.print("轉換後的檔案路徑:\n[bold deep_sky_blue3]{}[/]\n".format(Ask_path))
+
+        table = Table(show_header=True, header_style="bold green", box= box.DOUBLE_EDGE)
+        table.add_column("選擇的檔案", style="cyan", justify="center")
+        table.add_column("轉換後的檔案", style="cyan", justify="center")
+        table.add_row(Music_name,Target_file_name)
+        console.print(table)
+
+        Ask = Input_ask("\n[bold #ebcc36]是否要開始轉換? [Y/N] [/]", "Check_Ask", True).Reply
 
         if Ask == True:
             Audio_Convert()
@@ -274,7 +278,7 @@ def Chinese():
 
     # 開始轉換
     def Audio_Convert():
-        console.print("\n{:-^70}".format(""))
+        Lines("","-",70)
         if Music_extension == Target_audio:
             Ask2 = Input_ask(
                 "[bold #ebcc36]\n轉換後的音訊格式與原檔案相同，是否繼續轉換? [Y/N] [/]", "Check_Ask", True
@@ -287,16 +291,17 @@ def Chinese():
 
         try:
             console.print("\n[bold red]正在轉換中...[/]\n")
-            start = time.perf_counter()
-            ffmpeg()
-            end = time.perf_counter()
+            ffmpeg() 
         except Exception as e:
             print(e)
-            console.print("\n[bold red]轉換失敗![/]\n")
+            console.print("\n\n[bold red]轉換失敗![/]\n")
             sys.exit(0)
 
-        Times = Decimal((end - start)).quantize(Decimal("0.00"), rounding=ROUND_HALF_UP)
-        console.print("\n{:-^70}".format(""))  # 分隔線
+        Times = Decimal((Total_Time)).quantize(Decimal("0.000"), rounding=ROUND_HALF_UP)
+
+        print("\n")
+        Lines("","-",70)  # 分隔線
+
         console.print(
             "\n轉換完成! 處理時間為:[bold #10b4eb]{}秒[/][bold red] (估計時間非準確)[/]\n".format(Times)
         )
@@ -304,6 +309,7 @@ def Chinese():
 
     # 轉換處理主程序
     def ffmpeg():
+        global Total_Time
         Audio_format = {
             "mp3": '{} "{}" -q:a 0 -map_metadata 0 -id3v2_version 3 "{}"',
             "wav": '{} "{}" -c:a pcm_s16le -f wav "{}"',
@@ -314,15 +320,18 @@ def Chinese():
             "wma": '{} "{}" -c:a wmav2 "{}"',
         }
         if Target_audio in Audio_format:
+            start = time.perf_counter()
             os.system(
                 Audio_format[Target_audio].format(
                     "ffmpeg -i", Music_path, Target_file_path
                 )
             )
+            end = time.perf_counter()
+        Total_Time = end - start
 
     # 轉換完成後的詢問
     def Ask_End():
-        console.print("{:-^70}".format(""))  # 分隔線
+        Lines("","-",70)  # 分隔線
         Ask3 = Input_ask("\n[bold #ebcc36]是否要繼續轉換? [Y/N] [/]", "Check_Ask", True).Reply
         if Ask3 == True:
             Clear()
