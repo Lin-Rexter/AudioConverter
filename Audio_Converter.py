@@ -59,7 +59,7 @@ class Input_ask:
             # 判斷輸入是否為正確檔名或路徑
             elif self.Message_type == "Check_File-Name":
                 self.Err_message = "請輸入正確的檔名或路徑或音檔代號!"
-                if os.path.exists(self.Reply) or (
+                if os.path.isfile(self.Reply) or (
                     Music_list != [] and 0 < int(self.Reply) <= int(Music_number)
                 ):
                     self.Back_B()
