@@ -185,10 +185,10 @@ def Chinese():
         # 判斷輸入的數值是否為代號，將數值變換為音檔名稱
         try:
             Music_name = Music_list[int(Music_path) - 1]  # 列表從0開始所以減1
-            Music_path = os.path.abspath(Music_name)
+            Music_path = os.path.abspath(Music_path)
         except:
             Music_name = os.path.basename(Music_path)
-            Music_path = os.path.abspath(Music_name)
+            Music_path = os.path.abspath(Music_path)
         Music_extension = Music_name.split(".")[1]
 
         console.print("\n選擇轉換的音檔為: [bold deep_sky_blue3]{}[/]\n".format(Music_name))
