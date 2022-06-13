@@ -10,7 +10,7 @@
 
 **Language version: Chinese, English.**<br>
 
-### **[Download link](https://github.com/Lin-Rexter/AudioConverter/blob/main/dist/Audio_Converter.exe?raw=true)**
+### **[Download Zip](https://github.com/Lin-Rexter/AudioConverter/archive/refs/heads/main.zip)**
 
 ### WARNING! If a security warning appears after running the file,you can continue to run it.
 ________________________________________________________________________________________________________________________________________________
