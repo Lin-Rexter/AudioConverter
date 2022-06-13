@@ -1,7 +1,7 @@
 ## AudioConverter
 A simple audio converter of python using [FFmpeg](https://github.com/FFmpeg/FFmpeg).
 
-### **Introduction:**
+## Introduction
 
 **1.** Use [FFmpeg](https://github.com/FFmpeg/FFmpeg) convert audio format.<br>
 **2.** Use [PyInquirer](https://github.com/CITGuru/PyInquirer) and [Rich](https://github.com/Textualize/rich) to build beautiful interfaces.<br>
@@ -9,12 +9,15 @@ A simple audio converter of python using [FFmpeg](https://github.com/FFmpeg/FFmp
 **4.** Use [black](https://github.com/psf/black) format code.<br>
 **5.** Supported audio formats: mp3, flac, wav, aac, m4a, wma, ogg.<br>
 
-**Language version: Chinese, English.**<br>
+## Supported languages
+- **Chinese**
+- **English**
 
-### **[Download Zip](https://github.com/Lin-Rexter/AudioConverter/archive/refs/heads/main.zip)**
+## Installation
+### [Download Zip](https://github.com/Lin-Rexter/AudioConverter/archive/refs/heads/main.zip)
 
-### WARNING! If a security warning appears after running the file,you can continue to run it.
-________________________________________________________________________________________________________________________________________________
+## Notice
+**If a security warning appears after running the file,you can continue to run it.**
 
 ## Usage
 
