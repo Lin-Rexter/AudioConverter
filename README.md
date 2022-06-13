@@ -18,7 +18,7 @@ A simple audio converter of python using [FFmpeg](https://github.com/FFmpeg/FFmp
 
 > **Notice: If a security warning appears after running the file,you can continue to run it.**
 
-## Usage
+## How to use
 
 ### English
 ```
