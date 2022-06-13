@@ -5,7 +5,7 @@
 **1.** Use [FFmpeg](https://github.com/FFmpeg/FFmpeg) convert audio format.<br>
 **2.** Use [PyInquirer](https://github.com/CITGuru/PyInquirer) and [Rich](https://github.com/Textualize/rich) to build beautiful interfaces.<br>
 **3.** Use [pyinstaller](https://github.com/pyinstaller/pyinstaller) compiled to Windows executable.<br>
-**4.** Use [black](https://github.com/psf/black) format code.
+**4.** Use [black](https://github.com/psf/black) format code.<br>
 **5.** Supported audio formats: mp3, flac, wav, aac, m4a, wma, ogg.<br>
 
 **Language version: Chinese, English.**<br>
