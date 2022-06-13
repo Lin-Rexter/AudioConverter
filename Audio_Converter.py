@@ -248,7 +248,9 @@ def Chinese():
         Ask_path = os.path.abspath(Ask_path)
         Target_file_path = os.path.join(Ask_path, Target_file_name)
 
-        console.print("\n選擇轉換後的音檔存放位置為: [bold deep_sky_blue3]{}[/]\n".format(Ask_path))
+        console.print(
+            "\n\n選擇轉換後的音檔存放位置為: [bold deep_sky_blue3]{}[/]\n".format(Ask_path)
+        )
         Ask_Convert()
 
     # 詢問是否開始轉換
