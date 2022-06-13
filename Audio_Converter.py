@@ -153,7 +153,7 @@ def Chinese():
                     Music_number += 1
 
             Music_list.sort(key=lambda x: x.split(".")[-1])
-        
+
             table = Table(show_header=True, header_style="bold green", box=box.ROUNDED)
             table.add_column("號碼", style="cyan", justify="center")
             table.add_column("檔案名稱", style="cyan", justify="right")
@@ -665,7 +665,7 @@ def Ask_language():
 
 if __name__ == "__main__":
     try:
-        #Window("full")
+        # Window("full")
         Ask_language()
     except Exception:
         console.print("\n\n[bold red]已中斷程序! Operation cancelled![/]\n")
