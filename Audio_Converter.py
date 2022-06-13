@@ -79,24 +79,21 @@ class Input_ask:
 
             # 判斷檔案路徑是否正確並判斷是否有相同檔案
             elif self.Message_type == "Check_File-Path":
-                self.Err_message = "目標目錄下已有同名、同類型檔案!"
+                self.Err_message = "目標目錄下已有同名、同類型檔案!       "
 
                 if self.Reply == "":
                     self.Reply = os.getcwd()
-                    path = self.Reply + "\\" + Target_file_name
-                    if not os.path.exists(path):
-                        self.Back_A()
-                    else:
-                        self.ShowError()
-                elif not os.path.exists(self.Reply):
+                    Target_file = os.path.join(self.Reply, Target_file_name)
+                if not os.path.exists(self.Reply):
                     self.Err_message = "路徑錯誤或不存在，請重新輸入正確路徑!"
                     self.ShowError()
                 else:
-                    path = self.Reply + "\\" + Target_file_name
-                    if not os.path.exists(path):
-                        self.Back_A()
-                    else:
-                        self.ShowError()
+                    Target_file = os.path.join(self.Reply, Target_file_name)
+
+                if not os.path.exists(Target_file):
+                    self.Back_A()
+                else:
+                    self.ShowError()
 
             # 未定義提問類型，顯示錯誤
             else:
@@ -191,6 +188,7 @@ def Chinese():
             Music_path = os.path.abspath(Music_name)
         except:
             Music_name = os.path.basename(Music_path)
+            Music_path = os.path.abspath(Music_name)
         Music_extension = Music_name.split(".")[1]
 
         console.print("\n選擇轉換的音檔為: [bold deep_sky_blue3]{}[/]\n".format(Music_name))
@@ -239,6 +237,7 @@ def Chinese():
     # 輸入轉換後的檔案路徑
     def Ask_Path():
         Lines("", "-", 70)  # 分隔線
+
         # Ask_path = 設置轉換後的檔案放置位置
         # Target_file_path = 轉換後的檔案完整路徑
         global Ask_path, Target_file_path
@@ -246,12 +245,10 @@ def Chinese():
         Ask_path = Input_ask(
             "\n請輸入轉換後的音檔存放位置[bold #ff7300](按下Enter默認當前位置)[/]", "Check_File-Path", True
         ).Reply
+        Ask_path = os.path.abspath(Ask_path)
+        Target_file_path = os.path.join(Ask_path, Target_file_name)
 
-        Target_file_path = Ask_path + "/" + Target_file_name
-
-        console.print(
-            "\n選擇轉換後的音檔存放位置為: [bold deep_sky_blue3]{}[/]\n".format(Target_file_path)
-        )
+        console.print("\n選擇轉換後的音檔存放位置為: [bold deep_sky_blue3]{}[/]\n".format(Ask_path))
         Ask_Convert()
 
     # 詢問是否開始轉換
@@ -276,7 +273,7 @@ def Chinese():
         if Ask == True:
             Audio_Convert()
         elif Ask == False:
-            console.print("\n已取消轉換 請稍等...")
+            console.print("\n\n已取消轉換 請稍等...")
             Clear()
             ShowList()
 
