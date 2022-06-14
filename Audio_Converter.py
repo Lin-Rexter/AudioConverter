@@ -25,7 +25,7 @@ pretty.install()
 console = Console()
 
 # Enlarge the window
-# Window("full")
+Window("full")
 
 # Custom Input Validation
 class Input_ask:
