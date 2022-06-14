@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function, unicode_literals
 import os, sys, subprocess, time
-from tokenize import Special
 
 # PyInquirer module
 from PyInquirer import prompt
@@ -21,11 +20,12 @@ from ALL_Module.Convert_size import *
 from ALL_Module.Separation_Line import *
 from ALL_Module.ANSI_Escape_Code import *
 
-# import curses
-
 # rich module
 pretty.install()
 console = Console()
+
+# Enlarge the window
+# Window("full")
 
 # Custom Input Validation
 class Input_ask:
@@ -36,8 +36,8 @@ class Input_ask:
         self.Input()
 
     def Input(self):
-        console.print(self.Message + ": ")
-        self.Reply = input().strip()
+        console.print(self.Message)
+        self.Reply = input("=> ").strip()
         self.Check()
 
     # 判斷輸入是否錯誤
@@ -92,7 +92,7 @@ class Input_ask:
                     Target_file = os.path.join(self.Reply, Target_file_name)
 
                 if not os.path.exists(Target_file):
-                    self.Back_A()
+                    self.Back_B()
                 else:
                     self.ShowError()
 
@@ -264,7 +264,7 @@ def Chinese():
         Target_file_path = os.path.join(Ask_path, Target_file_name)
 
         console.print(
-            "\n\n選擇轉換後的音檔存放位置為: [bold deep_sky_blue3]{}[/]\n".format(Ask_path)
+            "\n\n\n選擇轉換後的音檔存放位置為: [bold deep_sky_blue3]{}[/]\n".format(Ask_path)
         )
         Ask_Convert()
 
@@ -296,18 +296,20 @@ def Chinese():
 
     # 開始轉換
     def Audio_Convert():
+        print("\n\n")
         Lines("", "-", 70)
         if Music_extension == Target_audio:
             Ask2 = Input_ask(
                 "[bold #ebcc36]\n轉換後的音訊格式與原檔案相同，是否繼續轉換? [Y/N] [/]", "Check_Ask", True
             ).Reply
             if Ask2 == True:
-                print("\n")
                 pass
             elif Ask2 == False:
+                print("\n\n")
                 Ask_End()
 
         try:
+            print("\n")
             console.print("\n[bold red]正在轉換中...[/]\n")
             ffmpeg()
         except Exception as e:
@@ -353,12 +355,15 @@ def Chinese():
     # 轉換完成後的詢問
     def Ask_End():
         Lines("", "-", 70)  # 分隔線
-        Ask3 = Input_ask("\n[bold #ebcc36]是否要繼續轉換? [Y/N] [/]", "Check_Ask", True).Reply
+        Ask3 = Input_ask(
+            "\n[bold #ebcc36]是否要繼續轉換其他音檔? [Y/N] [/]", "Check_Ask", True
+        ).Reply
         if Ask3 == True:
             Clear()
             ShowList()
         elif Ask3 == False:
-            console.print("\n\n[bold #81eb36]轉換結束![/]\n")
+            print("\n")
+            console.print("\n[bold #81eb36]轉換結束![/]\n")
             Stop()
             sys.exit()
 
@@ -392,7 +397,6 @@ def English():
             table.add_column("File Name", style="cyan", justify="center")
             table.add_column("File Size", style="cyan", justify="center")
             for i in range(len(Music_list)):
-                Music_number += 1
                 table.add_row(
                     "(" + str(i + 1) + ")",
                     Music_list[i],
@@ -516,7 +520,7 @@ def English():
         Target_file_path = os.path.join(Ask_path, Target_file_name)
 
         console.print(
-            "\n\nThe location of the converted audio file: [bold deep_sky_blue3]{}[/]\n".format(
+            "\n\n\nThe location of the converted audio file: [bold deep_sky_blue3]{}[/]\n".format(
                 Ask_path
             )
         )
@@ -553,6 +557,7 @@ def English():
 
     # Start the conversion
     def Audio_Convert():
+        print("\n\n")
         Lines("", "-", 70)
         if Music_extension == Target_audio:
             Ask2 = Input_ask(
@@ -561,12 +566,13 @@ def English():
                 True,
             ).Reply
             if Ask2 == True:
-                print("\n")
                 pass
             elif Ask2 == False:
+                print("\n\n")
                 Ask_End()
 
         try:
+            print("\n")
             console.print("\n[bold red]Converting...[/]\n")
             ffmpeg()
         except Exception as e:
@@ -622,7 +628,8 @@ def English():
             Clear()
             ShowList()
         elif Ask3 == False:
-            console.print("\n\n[bold #81eb36]Conversion completed![/]\n")
+            print("\n")
+            console.print("\n[bold #81eb36]Conversion completed![/]\n")
             Stop()
             sys.exit()
 
@@ -645,27 +652,32 @@ def Ask_language():
         try:
             Chinese()
         except KeyboardInterrupt:
-            console.print("\n\n\n[bold red]已中斷程序![/]\n")
+            Custom.Re_Err_B()
+            print("\n\n")
+            console.print("\n[bold red]已中斷程序![/]\n")
             sys.exit(0)
         except Exception as e:
             print(e)
-            console.print("\n\n[bold red]發生錯誤![/]\n")
+            print("\n")
+            console.print("\n[bold red]發生錯誤![/]\n")
             sys.exit(0)
     elif language == "English":
         try:
             English()
         except KeyboardInterrupt:
-            console.print("\n\n\n[bold red]Cenceled![/]\n")
+            Custom.Re_Err_B()
+            print("\n\n")
+            console.print("\n[bold red]Program has been interrupted by user![/]\n")
             sys.exit(0)
         except Exception as e:
             print(e)
-            console.print("\n\n[bold red]Error![/]\n")
+            print("\n")
+            console.print("\n[bold red]Error![/]\n")
             sys.exit(0)
 
 
 if __name__ == "__main__":
     try:
-        # Window("full")
         Ask_language()
     except Exception:
         console.print("\n\n[bold red]已中斷程序! Operation cancelled![/]\n")
