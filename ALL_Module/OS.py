@@ -9,7 +9,7 @@ def Clear():
 
 
 def Stop():
-    console.print("\n[bold #ff7300]請按任意鍵離開...[/]")
+    console.print("\n[bold #ff7300]請按任意鍵離開...(Please press any key to exit...)[/]")
     os.system("pause >nul 2>&1")
 
 def Window(mode):
