@@ -1,13 +1,13 @@
 ## AudioConverter
-A simple audio converter of python using [FFmpeg](https://github.com/FFmpeg/FFmpeg).
+A simple audio converter of python using **[FFmpeg](https://github.com/FFmpeg/FFmpeg)**.
 
 ## Introduction
 
-**1.** Use [FFmpeg](https://github.com/FFmpeg/FFmpeg) convert audio format.<br>
-**2.** Use [PyInquirer](https://github.com/CITGuru/PyInquirer) and [Rich](https://github.com/Textualize/rich) to build beautiful interfaces.<br>
-**3.** Use [pyinstaller](https://github.com/pyinstaller/pyinstaller) compiled to Windows executable.<br>
-**4.** Use [black](https://github.com/psf/black) format code.<br>
-**5.** Supported audio formats: mp3, flac, wav, aac, m4a, wma, ogg.<br>
+**1.** Use **[FFmpeg](https://github.com/FFmpeg/FFmpeg)** convert audio format.<br>
+**2.** Use **[PyInquirer](https://github.com/CITGuru/PyInquirer)** and **[Rich](https://github.com/Textualize/rich)** to build beautiful interfaces.<br>
+**3.** Use **[PyInstaller](https://github.com/pyinstaller/pyinstaller)** compiled to Windows executable.<br>
+**4.** Use **[Black](https://github.com/psf/black)** format code.<br>
+**5.** Supported audio formats: **MP3, FLAC, WAV, AAC, M4A, WMA, OGG** (More formats will be added).<br>
 
 ## Supported languages
 - **Chinese**
@@ -22,8 +22,8 @@ A simple audio converter of python using [FFmpeg](https://github.com/FFmpeg/FFmp
 
 ### English
 ```
-1. Run exe file will display audio files in the current directory(mp3, flac, wav, aac, m4a, wma, ogg).
-2. Enter the name or the full path or number(If there are audio files in the current directory, it will show) of audio file to convert.
+1. Run exe file will display audio files in the current directory(MP3, FLAC, WAV, AAC, M4A, WMA, OGG).
+2. Enter the name or the full path or number(If there are audio files in the current directory, it will show) of the audio file you want to convert.
 3. Enter the new name of converted audio file or use original name.
 4. Choose the format of new audio file.
 5. Enter the path of new audio file.
@@ -31,7 +31,7 @@ A simple audio converter of python using [FFmpeg](https://github.com/FFmpeg/FFmp
 
 ### Chinese
 ```
-1. 執行exe檔後會顯示當前目錄下的音頻(mp3, flac, wav, aac, m4a, wma, ogg)。
+1. 執行exe檔後會顯示當前目錄下的音頻(MP3, FLAC, WAV, AAC, M4A, WMA, OGG)。
 2. 輸入目標音檔的名稱或完整路徑或是音檔的代號(當前目錄如有音檔，則會顯示代號，方便輸入)。
 3. 輸入轉換後的音檔名稱，也可使用原本名稱。
 4. 選擇轉換後的音頻格式。
