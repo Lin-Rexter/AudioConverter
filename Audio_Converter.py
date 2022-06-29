@@ -11,7 +11,7 @@ from rich import print, pretty, box
 from rich.console import Console
 from rich.table import Table
 
-# 時間運算
+# 時間運算(Time calculation)
 from decimal import *
 
 # Custom module
@@ -25,14 +25,14 @@ pretty.install()
 console = Console()
 
 # Enlarge the window
-Window("full")
+#Window("full")
 
 # Custom Input Validation
 class Input_ask:
     def __init__(self, Message, Message_type, Error_show):
-        self.Message = Message  # 提問內容
-        self.Message_type = Message_type  # 提問類型
-        self.Error_show = Error_show  # 是否顯示錯誤訊息
+        self.Message = Message  # 提問內容(The question)
+        self.Message_type = Message_type  # 提問類型(The type of question)
+        self.Error_show = Error_show  # 是否顯示錯誤訊息(Whether to show error message)
         self.Input()
 
     def Input(self):
@@ -40,12 +40,12 @@ class Input_ask:
         self.Reply = input("=> ").strip()
         self.Check()
 
-    # 判斷輸入是否錯誤
+    # 判斷輸入是否錯誤(Check if the input is incorrect)
     def Check(self):
         try:
-            # 用於判斷Y或N
+            # 用於判斷Y或N(Use to determine Y or N)
             if self.Message_type == "Check_Ask":
-                self.Err_message = "請輸入Y或N"  # 錯誤訊息
+                self.Err_message = "請輸入Y或N(Please enter Y or N)"  # 錯誤訊息(Error message)
 
                 Valid = {"yes": True, "y": True, "ye": True, "no": False, "n": False}
                 self.Reply = self.Reply.lower()
@@ -56,9 +56,9 @@ class Input_ask:
                 else:
                     self.ShowError()
 
-            # 判斷輸入是否為正確檔名或路徑
+            # 判斷輸入是否為正確檔名或路徑(Check if the input is correct file name or path)
             elif self.Message_type == "Check_File-Name":
-                self.Err_message = "請輸入正確的檔名或路徑或音檔代號!"
+                self.Err_message = "請輸入正確的檔名或路徑或音檔代號!(Please enter correct file name or path or number!)"
                 if os.path.isfile(self.Reply) or (
                     Music_list != [] and 0 < int(self.Reply) <= int(Music_number)
                 ):
@@ -66,9 +66,9 @@ class Input_ask:
                 else:
                     self.ShowError()
 
-            # 判斷輸入檔名是否包含非法字元
+            # 判斷輸入檔名是否包含非法字元(Check if the file name contains illegal characters)
             elif self.Message_type == "Check_File-Format":
-                self.Err_message = '檔名不能有 \ / : * ? " < > | 的特殊符號!'
+                self.Err_message = '檔名不能有 \ / : * ? " < > | 的特殊符號!(File name cannot contain special characters!)'
 
                 Special_char = ["\\", "/", ":", "*", "?", '"', "<", ">", "|"]
 
@@ -77,16 +77,16 @@ class Input_ask:
                 else:
                     self.ShowError()
 
-            # 判斷檔案路徑是否正確並判斷是否有相同檔案
+            # 判斷檔案路徑是否正確並判斷是否有相同檔案(Check if the file path is correct and check if there is the same file)
             elif self.Message_type == "Check_File-Path":
-                self.Err_message = "目標目錄下已有同名、同類型檔案!       "
+                self.Err_message = "目標目錄下已有同名、同類型檔案!(The same file already exists in the target directory!)"
 
                 if self.Reply == "":
                     self.Reply = os.getcwd()
                     Target_file = ""
                     Target_file = os.path.join(self.Reply, Target_file_name)
                 if not os.path.exists(self.Reply):
-                    self.Err_message = "路徑錯誤或不存在，請重新輸入正確路徑!"
+                    self.Err_message = "路徑錯誤或不存在，請重新輸入正確路徑!(Path error or does not exist, please enter the correct path!)"
                     self.ShowError()
                 else:
                     Target_file = os.path.join(self.Reply, Target_file_name)
@@ -96,45 +96,48 @@ class Input_ask:
                 else:
                     self.ShowError()
 
-            # 未定義提問類型，顯示錯誤
+            # 未定義提問類型，顯示錯誤(Undefined question type,show error)
             else:
-                self.Err_message = "未設定或正確的提問類型參數!"
+                self.Err_message = "未設定或正確的提問類型參數!(Undefined or correct question type parameter!)"
                 self.ShowError()
 
         except Exception:
             self.ShowError()
 
-    # 顯示錯誤訊息
+    # 顯示錯誤訊息(Show error message)
     def ShowError(self):
-        # 判斷參數設定是否需要顯示錯誤訊息
         if self.Error_show == True:
             Custom.Show_Err(self.Err_message)
             self.Cursor_Return_A()
         elif self.Error_show == False:
             self.Cursor_Return_B()
 
+    # Cursor back to the beginning of the line and clear the original text(Error_show == True)
     # 光標回歸輸入行，清除舊輸入文字(用於有錯誤訊息的情況)
     def Cursor_Return_A(self):
         Custom.Re_Cursor_A()
         self.Input()
 
+    # Cursor back to the beginning of the line and clear the original text(Error_show == False)
     # 光標回歸輸入行，清除舊輸入文字(用於無錯誤訊息的情況)
     def Cursor_Return_B(self):
         Custom.Re_Cursor_B()
         self.Input()
 
-    # 輸入正確，回到進度
+    # If the input is correct and clear error massage
+    # 輸入正確，清除錯誤訊息
     def Back_A(self):
-        Custom.Re_Err_A()  # 收回錯誤訊息
+        Custom.Re_Err_A()
         return self.Reply
-
-    # 輸入正確，回到進度
+    
+    # If the input is correct and clear error massage  
+    # 輸入正確，清除錯誤訊息
     def Back_B(self):
-        Custom.Re_Err_B()  # 收回錯誤訊息
+        Custom.Re_Err_B()
         return self.Reply
 
 
-# 語言版本-中文
+# 語言版本-中文(Language version-Chinese)
 def Chinese():
 
     Clear()
@@ -371,11 +374,12 @@ def Chinese():
         ShowList()
 
 
+
 # 語言版本-English
 def English():
 
     Clear()
-    # Show list of audio file in current directory
+    # Show the audio files in the current directory
     def ShowList():
         Lines("[bold cyan]The list of audio files in current directory[/]", "-", 84)
 
@@ -394,7 +398,7 @@ def English():
 
             table = Table(show_header=True, header_style="bold green", box=box.ROUNDED)
             table.add_column("Number", style="cyan", justify="center")
-            table.add_column("File Name", style="cyan", justify="center")
+            table.add_column("File Name", style="cyan", justify="right")
             table.add_column("File Size", style="cyan", justify="center")
             for i in range(len(Music_list)):
                 table.add_row(
@@ -405,13 +409,13 @@ def English():
             console.print(table)
 
             console.print(
-                "\n[bold cyan]Total number of music files:[/] [bold #10b4eb]{}[/]\n".format(
+                "\n[bold cyan]Total number of audio files:[/] [bold #10b4eb]{}[/]\n".format(
                     Music_number
                 )
             )
         except:
             console.print(
-                "\n[bold #00ffa2]There is no audio file in the current directory![/]\n"
+                "\n[bold #00ffa2]No any audio file in the current directory![/]\n"
             )
         Choice()
 
@@ -427,7 +431,7 @@ def English():
         Music_extension = ""
 
         Music_path = Input_ask(
-            "\n[bold #ebcc36]Please enter the number of audio file to convert[/]",
+            "\n[bold #ebcc36]Please enter the path or name or number of audio file to convert[/]",
             "Check_File-Name",
             True,
         ).Reply
@@ -456,7 +460,7 @@ def English():
         Ask_name = ""
 
         Ask_name = Input_ask(
-            "\nPlease enter the name of the converted audio file [bold #ff7300](Press Enter to use the original file name)[/]",
+            "\nEnter the new name of the converted audio file [bold #ff7300](Enter blank values to use original name)[/]",
             "Check_File-Format",
             True,
         ).Reply
@@ -465,7 +469,7 @@ def English():
             Ask_name = Music_name.split(".")[0]
 
         console.print(
-            "\nThe name of the converted audio file: [bold deep_sky_blue3]{}[/]\n".format(
+            "\nThe new name of the converted audio file: [bold deep_sky_blue3]{}[/]\n".format(
                 Ask_name
             )
         )
@@ -505,14 +509,14 @@ def English():
     def Ask_Path():
         Lines("", "-", 70)
 
-        # Ask_path = The audio file location after conversion
-        # Target_file_path = The full path of the converted file
+        # Ask_path = The audio file path after conversion
+        # Target_file_path = The audio file path and name of the converted file
         global Ask_path, Target_file_path
         Ask_path = ""
         Target_file_path = ""
 
         Ask_path = Input_ask(
-            "\nPlease enter the location of the converted audio file [bold #ff7300](Press Enter to use the current position)[/]",
+            "\nPlease enter the path of the converted audio file [bold #ff7300](Enter blank values to use the current path)[/]",
             "Check_File-Path",
             True,
         ).Reply
@@ -520,13 +524,13 @@ def English():
         Target_file_path = os.path.join(Ask_path, Target_file_name)
 
         console.print(
-            "\n\n\nThe location of the converted audio file: [bold deep_sky_blue3]{}[/]\n".format(
+            "\n\n\nThe path of the converted audio file: [bold deep_sky_blue3]{}[/]\n".format(
                 Ask_path
             )
         )
         Ask_Convert()
 
-    # Ask whether to start the conversion
+    # Ask whether to convert the audio file
     def Ask_Convert():
         Lines("[bold cyan]Conversion Process[/]", "-", 84)
 
@@ -555,16 +559,17 @@ def English():
             Clear()
             ShowList()
 
-    # Start the conversion
+    # Start to convert the audio file
     def Audio_Convert():
         print("\n\n")
         Lines("", "-", 70)
         if Music_extension == Target_audio:
             Ask2 = Input_ask(
-                "[bold #ebcc36]\nThe file is the same format as the target format,Do you want to convert it [Y/N] [/]",
+                "[bold #ebcc36]\nThe file is the same format as the target format,Do you want to convert it? [Y/N] [/]",
                 "Check_Ask",
                 True,
             ).Reply
+
             if Ask2 == True:
                 pass
             elif Ask2 == False:
@@ -586,7 +591,7 @@ def English():
         Lines("", "-", 70)
 
         console.print(
-            "\nConversion completed! Processing time is:[bold #10b4eb]{} seconds[/][bold red] (Estimated time is not accurate)[/]\n".format(
+            "\nConversion completed! Processing time : [bold #10b4eb]{} seconds[/][bold red] (Estimated time is not accurate)[/]\n".format(
                 Times
             )
         )
@@ -616,11 +621,11 @@ def English():
             end = time.perf_counter()
         Total_Time = end - start
 
-    # Ask whether to continue to convert
+    # Ask whether to continue to convert the audio file
     def Ask_End():
         Lines("", "-", 70)
         Ask3 = Input_ask(
-            "\n[bold #ebcc36]Do you want to convert another file? [Y/N] [/]",
+            "\n[bold #ebcc36]Do you want to continue to convert other audio file? [Y/N] [/]",
             "Check_Ask",
             True,
         ).Reply
@@ -629,7 +634,7 @@ def English():
             ShowList()
         elif Ask3 == False:
             print("\n")
-            console.print("\n[bold #81eb36]Conversion completed![/]\n")
+            console.print("\n[bold #81eb36]Thank you for using!!![/]\n")
             Stop()
             sys.exit()
 
@@ -637,6 +642,7 @@ def English():
         ShowList()
 
 
+# Choose the language version
 def Ask_language():
     Clear()
     questions = [
@@ -648,6 +654,7 @@ def Ask_language():
         }
     ]
     language = prompt(questions, style=custom_style_1).get("語言")
+
     if language == "中文":
         try:
             Chinese()
@@ -672,13 +679,16 @@ def Ask_language():
         except Exception as e:
             print(e)
             print("\n")
-            console.print("\n[bold red]Error![/]\n")
+            console.print("\n[bold red]An error has occurred![/]\n")
             sys.exit(0)
 
 
 if __name__ == "__main__":
     try:
         Ask_language()
-    except Exception:
+    except KeyboardInterrupt:
         console.print("\n\n[bold red]已中斷程序! Operation cancelled![/]\n")
+        sys.exit()
+    except Exception:
+        console.print("\n\n[bold red]發生錯誤!(An error has occurred!)[/]\n")
         sys.exit()
