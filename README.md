@@ -37,6 +37,10 @@ A simple audio converter of python using [FFmpeg](https://github.com/FFmpeg/FFmp
 4. 選擇轉換後的音頻格式。
 5. 輸入要儲存的位置。
 ```
+## Future
+- **Support more audio formats.**
+- **Support video convertion.**
+
 
 ## License
 **[MIT](https://opensource.org/licenses/MIT)**
