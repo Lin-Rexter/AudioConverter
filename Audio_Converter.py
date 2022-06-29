@@ -25,7 +25,7 @@ pretty.install()
 console = Console()
 
 # Enlarge the window
-#Window("full")
+Window("full")
 
 # Custom Input Validation
 class Input_ask:
@@ -98,7 +98,9 @@ class Input_ask:
 
             # 未定義提問類型，顯示錯誤(Undefined question type,show error)
             else:
-                self.Err_message = "未設定或正確的提問類型參數!(Undefined or correct question type parameter!)"
+                self.Err_message = (
+                    "未設定或正確的提問類型參數!(Undefined or correct question type parameter!)"
+                )
                 self.ShowError()
 
         except Exception:
@@ -129,8 +131,8 @@ class Input_ask:
     def Back_A(self):
         Custom.Re_Err_A()
         return self.Reply
-    
-    # If the input is correct and clear error massage  
+
+    # If the input is correct and clear error massage
     # 輸入正確，清除錯誤訊息
     def Back_B(self):
         Custom.Re_Err_B()
@@ -372,7 +374,6 @@ def Chinese():
 
     if __name__ == "__main__":
         ShowList()
-
 
 
 # 語言版本-English
