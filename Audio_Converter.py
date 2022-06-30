@@ -551,7 +551,9 @@ def English():
         console.print(table)
 
         Ask = Input_ask(
-            "\n[bold #ebcc36]Do you want to convert the file?[/]", "Check_Ask", True
+            "\n[bold #ebcc36]Do you want to convert the file? [Y/N] [/]",
+            "Check_Ask",
+            True,
         ).Reply
         if Ask == True:
             Audio_Convert()
