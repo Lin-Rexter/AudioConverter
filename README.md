@@ -1,3 +1,7 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/python-v3.8.10-blue?style=flat-square&logo=python)](https://www.python.org/downloads/release/python-3810/)
+
+
 ## AudioConverter
 A simple audio converter of python using **[FFmpeg](https://github.com/FFmpeg/FFmpeg)**.
 
