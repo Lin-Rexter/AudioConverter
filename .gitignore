@@ -4,8 +4,8 @@ AudioConverter_Test/
 build/
 使用套件/
 Audio_Converter.spec
-icon.ico
 python 格式化及打包(使用Black套件和Pyinstaller套件).bat
+*.ico
 *.mp3
 *.flac 
 *.wav 
@@ -13,5 +13,3 @@ python 格式化及打包(使用Black套件和Pyinstaller套件).bat
 *.m4a 
 *.wma 
 *.ogg
-
-
