@@ -1,6 +1,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![License: MIT](https://img.shields.io/badge/python-v3.8.10-blue?style=flat-square&logo=python)](https://www.python.org/downloads/release/python-3810/)
-
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 
 ## AudioConverter
 A simple audio converter of python using **[FFmpeg](https://github.com/FFmpeg/FFmpeg)**.
@@ -11,7 +12,8 @@ A simple audio converter of python using **[FFmpeg](https://github.com/FFmpeg/FF
 **2.** Use **[PyInquirer](https://github.com/CITGuru/PyInquirer)** and **[Rich](https://github.com/Textualize/rich)** to build beautiful interfaces.<br>
 **3.** Use **[PyInstaller](https://github.com/pyinstaller/pyinstaller)** compiled to Windows executable.<br>
 **4.** Use **[Black](https://github.com/psf/black)** format code.<br>
-**5.** Supported audio formats: **MP3, FLAC, WAV, AAC, M4A, WMA, OGG** (More formats will be added).<br>
+**5.** Use **[Bandit](https://github.com/PyCQA/bandit)** to check code security.<br>
+**6.** Supported audio formats: **MP3, FLAC, WAV, AAC, M4A, WMA, OGG** (More formats will be added).<br>
 
 ## Supported languages
 - **Chinese**
