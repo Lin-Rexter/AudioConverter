@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function, unicode_literals
-import os, sys, subprocess, time
+import os
+import sys
+import subprocess
+import time
 
 # PyInquirer module
 from PyInquirer import prompt
@@ -27,6 +30,7 @@ console = Console()
 # Enlarge the window
 Window("full")
 
+
 # Custom Input Validation
 class Input_ask:
     def __init__(self, Message, Message_type, Error_show):
@@ -45,7 +49,8 @@ class Input_ask:
         try:
             # 用於判斷Y或N(Use to determine Y or N)
             if self.Message_type == "Check_Ask":
-                self.Err_message = "請輸入Y或N(Please enter Y or N)"  # 錯誤訊息(Error message)
+                # 錯誤訊息(Error message)
+                self.Err_message = "請輸入Y或N(Please enter Y or N)"
 
                 Valid = {"yes": True, "y": True, "ye": True, "no": False, "n": False}
                 self.Reply = self.Reply.lower()
@@ -351,8 +356,7 @@ def Chinese():
             subprocess.run(
                 Audio_format[Target_audio].format(
                     "ffmpeg -i", Music_path, Target_file_path
-                ),
-                shell=True,
+                )
             )
             end = time.perf_counter()
         Total_Time = end - start
@@ -384,12 +388,12 @@ def English():
     def ShowList():
         Lines("[bold cyan]The list of audio files in current directory[/]", "-", 84)
 
-        try:
-            global Music_list, Music_number
-            Music_list = []
-            Music_number = 0
-            Music_format = ["mp3", "wav", "flac", "aac", "m4a", "wma", "ogg"]
+        global Music_list, Music_number
+        Music_list = []
+        Music_number = 0
+        Music_format = ["mp3", "wav", "flac", "aac", "m4a", "wma", "ogg"]
 
+        try:
             for file in os.listdir():
                 if file.split(".")[-1] in Music_format:
                     Music_list.append(file)
@@ -616,7 +620,7 @@ def English():
         }
         if Target_audio in Audio_format:
             start = time.perf_counter()
-            os.system(
+            subprocess.run(
                 Audio_format[Target_audio].format(
                     "ffmpeg -i", Music_path, Target_file_path
                 )
