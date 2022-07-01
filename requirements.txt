@@ -2,3 +2,4 @@ PyInquirer==1.0.3
 rich==12.2.0
 black==22.3.0
 pyinstaller==5.1
+bandit==1.7.4
